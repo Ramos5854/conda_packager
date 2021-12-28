@@ -1,0 +1,34 @@
+{% set version = "1.0" %}
+
+# Reference(s)
+# https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html
+
+package:
+  name: conda_packager
+  version: "{{ version }}"
+
+source:
+  # Source is located within a local path
+  path: C:/Users/aaram/Desktop/Python Projects/conda_packager
+
+build:
+  number: 1
+  #script: python setup.py install #--single-version-externally-managed --record=record.txt
+  script: python -m pip install .
+
+test:
+  imports:
+    - conda_packager
+  requires:
+    - python
+
+requirements:
+  build:
+    - python =3.8
+  run:
+    - pip
+    - python =3.8
+    - setuptools
+
+about:
+  summary: "Simple package containing a hello-world script"
